@@ -178,6 +178,7 @@ module ConsulCookbook
           autopilot
           auto_encrypt
           bind_addr
+          cert_file
           check_update_interval
           client_addr
           config_entries
@@ -204,6 +205,7 @@ module ConsulCookbook
           gossip_lan
           gossip_wan
           http_config
+          key_file
           leave_on_terminate
           limits
           log_file
@@ -264,7 +266,7 @@ module ConsulCookbook
 
         for_keeps << %i(discovery_max_stale) if node['consul']['version'] > '1.0.6'
         for_keeps << %i(bootstrap bootstrap_expect) if server
-        for_keeps << %i(ca_file ca_path cert_file enable_agent_tls_for_checks key_file) if tls?
+        for_keeps << %i(ca_file ca_path enable_agent_tls_for_checks) if tls?
         for_keeps = for_keeps.flatten
 
         raw_config = to_hash
